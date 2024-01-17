@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Acme Developer API
   description: >
-    The Acme Developer API is designed to provide a predictable :0 programmatic
+    The Acme Developer API is designed to provide a predictablee programmatic
     interface for accessing your Acme account through an API and transaction webhooks.
 
     Note that your API key is a secret and should be treated as such. Don't share it with anyone, including us. We will never ask you for it.
