@@ -15,7 +15,7 @@ jobs:
           input_path: 'config/acme-openapi.yml'
           config_path: 'config/acme.stainless.yml'
           output_path: 'config/acme-openapi.documented.json'
-      - uses: nkoppel/push-files-to-another-repository@1.1.0
+      - uses: nkoppel/push-files-to-another-repository@v1.1.2
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
