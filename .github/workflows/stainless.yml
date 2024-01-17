@@ -18,7 +18,7 @@ jobs:
           output_path: 'config/acme-openapi.documented.json'
       - name: Move to dedicated folder (as input to next step)
         run: |
-          mkdir config/documented && mv config/acme-openapi.documented.json config/documented
+          mkdir -p config/documented && mv config/acme-openapi.documented.json config/documented
       - name: Push documented spec to docs repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -29,4 +29,5 @@ jobs:
           destination-repository-name: 'docs'
           target-directory: 'config'
           user-email: meorphis@gmail.com
+          commit-message: "Auto-updates from Stainless"
           target-branch: main
