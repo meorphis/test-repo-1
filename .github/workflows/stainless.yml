@@ -9,17 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Create folder
-        run: |
-          mkdir config/documented
-      - name: Pushes spec and config to Stainless and outputs documented spec
+      - name: Push spec and config to Stainless and outputs documented spec
         uses: stainless-api/upload-openapi-spec-action@main
         with:
           stainless_api_key: ${{ secrets.STAINLESS_API_KEY }}
           input_path: 'config/acme-openapi.yml'
           config_path: 'config/acme.stainless.yml'
-          output_path: 'config/documented/acme-openapi.documented.json'
-      - name: Pushes documented spec to docs repo
+          output_path: 'config/acme-openapi.documented.json'
+      - name: Move to dedicated folder (as input to next step)
+        run: |
+          mkdir config/documented && mv config/acme-openapi.documented.json config/documented
+      - name: Push documented spec to docs repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
