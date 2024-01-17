@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
       - name: Push spec and config to Stainless and outputs documented spec
         uses: stainless-api/upload-openapi-spec-action@main
         with:
