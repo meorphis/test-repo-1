@@ -170,7 +170,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Get an Account's credit configuration!
+      summary: Get an Account's credit configuration test
       description: Get an Account's credit configuration
       operationId: getAccountCreditConfiguration
       parameters:
