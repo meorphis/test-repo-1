@@ -1,57 +1,25 @@
 # yaml-language-server: $schema=https://app.stainlessapi.com/config.schema.json
 
-# this config file is for testing the public version of our config
-# and as such can **only** use properties that are public
-#
-# for testing codegen cases you should update the `sink` config instead
-
 organization:
-  name: acme
-  docs: https://docs.acme.com
-  contact: sdk-feedback@acme.com
-  github_org: acme-com
-
-environments:
-  production: https://api.acme.com/v1
-  sandbox: https://sandbox.acme.com/v1
-
-client_settings:
-  idempotency:
-    header: Idempotency-Key
-  opts:
-    api_key:
-      type: string
-      nullable: false
-      read_env: 'ACME_API_KEY'
-      example: My acme API Key
-      auth: { security_scheme: ApiKeyAuth }
-    webhook_secret:
-      type: string
-      nullable: true
-      read_env: 'ACME_WEBHOOK_SECRET'
-
-query_settings:
-  array_format: comma
-
+  name: meorphis-test-4
+  docs: https://docs.meorphis-test-4.com
+  contact: support@acme.com
+  github_org: meorphis-test-4
 resources:
   accounts:
-    models:
-      account: AccountConfiguration
-      business_account: BusinessAccount
     methods:
       retrieve: get /accounts/{account_token}
-      update:
-        type: http
-        endpoint: patch /accounts/{account_token}
-        skip_test_reason: Prism returns invalid data
+      update: patch /accounts/{account_token}
     subresources:
-      credit_configurations:
+      credit_configuration:
         methods:
           retrieve: get /accounts/{account_token}/credit_configuration
           update: patch /accounts/{account_token}/credit_configuration
-  cards:
+        models:
+          businessaccount: BusinessAccount
     models:
-      card: Card
+      accountconfiguration: AccountConfiguration
+  cards:
     methods:
       create: post /cards
       retrieve: get /cards/{card_token}
@@ -60,62 +28,59 @@ resources:
     subresources:
       financial_transactions:
         methods:
-          retrieve: get /cards/{card_token}/financial_transactions/{financial_transaction_token}
-  $shared:
+          retrieve: >-
+            get
+            /cards/{card_token}/financial_transactions/{financial_transaction_token}
     models:
-      shipping_address: ShippingAddress
-      address: Address
-      carrier: Carrier
-  $client:
-    models:
-      api_status: get /status
+      card: Card
+      financialtransaction: FinancialTransaction
+  status:
     methods:
-      api_status: get /status
-
+      retrieve: get /status
 package:
   node:
-    name: acme
-    repo: acme-node
-  go:
-    name: acme
-    repo: acme-go
+    name: meorphis-test-4
+    repo: ''
   python:
-    name: acme
-    repo: acme-python
+    name: meorphis-test-4
+    repo: ''
   java:
-    name: acme
-    repo: acme-java
-    reverse_domain: com.acme
+    name: meorphis-test-4
+    repo: ''
+    reverse_domain: "org.example"
   kotlin:
-    name: acme
-    repo: acme-kotlin
+    name: meorphis-test-4
+    repo: ''
+  go:
+    name: meorphis-test-4
+    repo: ''
   ruby:
-    name: acme
-    repo: acme-ruby
-
+    name: meorphis-test-4
+    repo: ''
+settings:
+  license: Apache-2.0
+client_settings:
+  opts:
+    api_key:
+      type: string
+      auth:
+        security_scheme: ApiKeyAuth
+      read_env: MEORPHIS_TEST_4_API_KEY
+environments:
+  production: https://api.acme.com/v1
+  environment_1: https://sandbox.acme.com/v1
+query_settings:
+  nested_format: brackets
+  array_format: comma
 readme:
   example_requests:
     default:
       type: request
-      endpoint: post /cards
-      params:
-        type: SINGLE_USE
+      endpoint: get /status
+      params: &ref_0 {}
     headline:
       type: request
-      endpoint: post /cards
-      params:
-        type: SINGLE_USE
-    errors:
-      type: request
-      endpoint: post /cards
-      params:
-        type: an_incorrect_type
-      example_properties:
-        message: 'Invalid parameter(s): type'
-        debugging_request_id: 94d5e915-xxxx-4cee-a4f5-2xd6ebd279ac
-    nested_params:
-      type: request
-      endpoint: post /cards
-      params:
-        foo:
-          bar: true
+      endpoint: get /status
+      params: *ref_0
+openapi:
+  code_samples: mintlify
