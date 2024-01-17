@@ -21,6 +21,6 @@ jobs:
         with:
           source-files: 'config/acme-openapi.documented.json'
           destination-username: 'emorphis'
-          destination-repository: 'meorphis/test-repo'
+          destination-repository: 'meorphis/docs'
           destination-directory: 'config'
           commit-email: 'meorphis@gmail.com'
