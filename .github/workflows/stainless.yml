@@ -20,7 +20,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-files: 'config/acme-openapi.documented.json'
-          destination-username: 'emorphis'
+          destination-username: 'meorphis'
           destination-repository: 'meorphis/docs'
           destination-directory: 'config'
           commit-email: 'meorphis@gmail.com'
