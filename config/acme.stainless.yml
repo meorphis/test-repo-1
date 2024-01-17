@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=https://app.stainlessapi.com/config.schema.json
+
+# this config file is for testing the public version of our config
+# and as such can **only** use properties that are public
+#
+# for testing codegen cases you should update the `sink` config instead
+
+organization:
+  name: acme
+  docs: https://docs.acme.com
+  contact: sdk-feedback@acme.com
+  github_org: acme-com
+
+environments:
+  production: https://api.acme.com/v1
+  sandbox: https://sandbox.acme.com/v1
+
+client_settings:
+  idempotency:
+    header: Idempotency-Key
+  opts:
+    api_key:
+      type: string
+      nullable: false
+      read_env: 'ACME_API_KEY'
+      example: My acme API Key
+      auth: { security_scheme: ApiKeyAuth }
+    webhook_secret:
+      type: string
+      nullable: true
+      read_env: 'ACME_WEBHOOK_SECRET'
+
+query_settings:
+  array_format: comma
+
+resources:
+  accounts:
+    models:
+      account: AccountConfiguration
+      business_account: BusinessAccount
+    methods:
+      retrieve: get /accounts/{account_token}
+      update:
+        type: http
+        endpoint: patch /accounts/{account_token}
+        skip_test_reason: Prism returns invalid data
+    subresources:
+      credit_configurations:
+        methods:
+          retrieve: get /accounts/{account_token}/credit_configuration
+          update: patch /accounts/{account_token}/credit_configuration
+  cards:
+    models:
+      card: Card
+    methods:
+      create: post /cards
+      retrieve: get /cards/{card_token}
+      update: patch /cards/{card_token}
+      provision: post /cards/{card_token}/provision
+    subresources:
+      financial_transactions:
+        methods:
+          retrieve: get /cards/{card_token}/financial_transactions/{financial_transaction_token}
+  $shared:
+    models:
+      shipping_address: ShippingAddress
+      address: Address
+      carrier: Carrier
+  $client:
+    models:
+      api_status: get /status
+    methods:
+      api_status: get /status
+
+package:
+  node:
+    name: acme
+    repo: acme-node
+  go:
+    name: acme
+    repo: acme-go
+  python:
+    name: acme
+    repo: acme-python
+  java:
+    name: acme
+    repo: acme-java
+    reverse_domain: com.acme
+  kotlin:
+    name: acme
+    repo: acme-kotlin
+  ruby:
+    name: acme
+    repo: acme-ruby
+
+readme:
+  example_requests:
+    default:
+      type: request
+      endpoint: post /cards
+      params:
+        type: SINGLE_USE
+    headline:
+      type: request
+      endpoint: post /cards
+      params:
+        type: SINGLE_USE
+    errors:
+      type: request
+      endpoint: post /cards
+      params:
+        type: an_incorrect_type
+      example_properties:
+        message: 'Invalid parameter(s): type'
+        debugging_request_id: 94d5e915-xxxx-4cee-a4f5-2xd6ebd279ac
+    nested_params:
+      type: request
+      endpoint: post /cards
+      params:
+        foo:
+          bar: true
