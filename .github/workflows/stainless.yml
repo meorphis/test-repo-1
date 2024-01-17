@@ -13,3 +13,4 @@ jobs:
         with:
           stainless_api_key: ${{ secrets.STAINLESS_API_KEY }}
           input_path: 'config/acme-openapi.yml'
+          config_path: 'config/acme.stainless.yml'
