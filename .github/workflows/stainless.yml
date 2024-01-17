@@ -24,9 +24,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: 'config/documented/acme-openapi.documented.json'
+          source-directory: 'config/documented/acme-openapi.documented.json'
           destination-github-username: 'meorphis'
           destination-repository-name: 'docs'
-          destination-directory: 'config'
+          target-directory: 'config'
           user-email: meorphis@gmail.com
           target-branch: main
