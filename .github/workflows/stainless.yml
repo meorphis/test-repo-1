@@ -9,18 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: stainless-api/upload-openapi-spec-action@main
+      - name: Pushes spec and config to Stainless and outputs documented spec
+        uses: stainless-api/upload-openapi-spec-action@main
         with:
           stainless_api_key: ${{ secrets.STAINLESS_API_KEY }}
           input_path: 'config/acme-openapi.yml'
           config_path: 'config/acme.stainless.yml'
-          output_path: 'config/acme-openapi.documented.json'
-      - uses: nkoppel/push-files-to-another-repository@v1.1.2
+          output_path: 'config/documented/acme-openapi.documented.json'
+      - name: Pushes documented spec to docs repo
+        uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: 'config/acme-openapi.documented.json'
-          destination-username: 'meorphis'
-          destination-repository: 'meorphis/docs'
+          source-files: 'config/documented/acme-openapi.documented.json'
+          destination-github-username: 'meorphis'
+          destination-repository-name: 'docs'
           destination-directory: 'config'
-          commit-email: 'meorphis@gmail.com'
+          user-email: meorphis@gmail.com
+          target-branch: main
