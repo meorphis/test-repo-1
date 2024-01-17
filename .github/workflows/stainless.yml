@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Create folder
+        run: |
+          mkdir config/documented
       - name: Pushes spec and config to Stainless and outputs documented spec
         uses: stainless-api/upload-openapi-spec-action@main
         with:
