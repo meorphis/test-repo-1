@@ -27,14 +27,12 @@ jobs:
         run: |
           mkdir -p config/documented && mv config/acme-openapi.documented.json config/documented
       - name: Push documented spec to docs repo
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'config/documented'
-          destination-github-username: 'meorphis'
-          destination-repository-name: 'docs'
-          target-directory: 'config'
-          user-email: actions@github.com
-          commit-message: "Auto-updates from Stainless"
-          target-branch: main
+          source_file: 'config/acme-openapi.documented.json'
+          destination_repo: 'docs'
+          user_email: 'actions@github.com'
+          user_name: 'meorphis'
+          commit_message: 'Auto-updates from Stainless'
