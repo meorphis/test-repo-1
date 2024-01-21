@@ -23,9 +23,6 @@ jobs:
           message: "Auto-updates from Stainless"
           committer_name: GitHub Actions
           committer_email: actions@github.com
-      - name: Move to dedicated folder (as input to next step)
-        run: |
-          mkdir -p config/documented && mv config/acme-openapi.documented.json config/documented
       - name: Push documented spec to docs repo
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
