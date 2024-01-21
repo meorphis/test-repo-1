@@ -32,7 +32,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'config/acme-openapi.documented.json'
-          destination_repo: 'docs'
+          destination_repo: 'meorphis/docs'
           user_email: 'actions@github.com'
           user_name: 'meorphis'
           commit_message: 'Auto-updates from Stainless'
