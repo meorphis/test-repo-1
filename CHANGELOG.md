@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1-alpha.0 (2024-01-25)
+
+Full Changelog: [v0.3.0-alpha.0...v0.3.1-alpha.0](https://github.com/meorphis/test-repo-1/compare/v0.3.0-alpha.0...v0.3.1-alpha.0)
+
+### Bug Fixes
+
+* change README ([20c64ba](https://github.com/meorphis/test-repo-1/commit/20c64baedb2558c1734b55ca0860a50e2aff9986))
+
 ## 0.3.0-alpha.0 (2024-01-25)
 
 Full Changelog: [v0.2.0-alpha.0...v0.3.0-alpha.0](https://github.com/meorphis/test-repo-1/compare/v0.2.0-alpha.0...v0.3.0-alpha.0)
