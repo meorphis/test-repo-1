@@ -17,6 +17,8 @@ import (
 )
 ```
 
+gen 2
+
 <!-- x-release-please-end -->
 
 Or to pin the version:
