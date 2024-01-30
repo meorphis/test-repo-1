@@ -86,7 +86,7 @@ params := FooParams{
 }
 ```
 
-### Response Objects
+### Response Objects custom code
 
 All fields in response structs are value types (not pointers or wrappers).
 
