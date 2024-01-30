@@ -1,3 +1,5 @@
+gen
+
 # Meorphis Test 9 Go API Library
 
 <a href="https://pkg.go.dev/github.com/meorphis/test-repo"><img src="https://pkg.go.dev/badge/github.com/meorphis/test-repo.svg" alt="Go Reference"></a>
