@@ -2,12 +2,11 @@
 
 Types:
 
-```python
-from meorphis_test_9.types import Pet, Pets
-```
+- <code><a href="./src/resources/pets.ts">Pet</a></code>
+- <code><a href="./src/resources/pets.ts">Pets</a></code>
 
 Methods:
 
-- <code title="post /pets">client.pets.<a href="./src/meorphis_test_9/resources/pets.py">create</a>(\*\*<a href="src/meorphis_test_9/types/pet_create_params.py">params</a>) -> None</code>
-- <code title="get /pets/{petId}">client.pets.<a href="./src/meorphis_test_9/resources/pets.py">retrieve</a>(pet_id) -> <a href="./src/meorphis_test_9/types/pet.py">Pet</a></code>
-- <code title="get /pets">client.pets.<a href="./src/meorphis_test_9/resources/pets.py">list</a>(\*\*<a href="src/meorphis_test_9/types/pet_list_params.py">params</a>) -> <a href="./src/meorphis_test_9/types/pets.py">Pets</a></code>
+- <code title="post /pets">client.pets.<a href="./src/resources/pets.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /pets/{petId}">client.pets.<a href="./src/resources/pets.ts">retrieve</a>(petId) -> Pet</code>
+- <code title="get /pets">client.pets.<a href="./src/resources/pets.ts">list</a>({ ...params }) -> Pets</code>
