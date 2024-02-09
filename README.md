@@ -59,7 +59,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const pet = await meorphisTest9.pets.list().catch((err) => {
+  const pets = await meorphisTest9.pets.list().catch((err) => {
     if (err instanceof MeorphisTest9.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
