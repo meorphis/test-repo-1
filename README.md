@@ -12,7 +12,7 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 The REST API documentation can be found [on docs.meorphis-test-9.com](https://docs.meorphis-test-9.com). The full API of this library can be found in [api.md](https://www.github.com/meorphis/test-repo-1/blob/main/api.md).
 
-## Installation
+## Installationn
 
 ```sh
 pip install meorphis-test-9
