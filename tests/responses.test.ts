@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'meorphis-test-9/core';
-import { Headers } from 'meorphis-test-9/_shims/index';
+import { createResponseHeaders } from 'meorphis-test-4/core';
+import { Headers } from 'meorphis-test-4/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

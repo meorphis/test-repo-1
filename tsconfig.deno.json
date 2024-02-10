@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "meorphis-test-9/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "meorphis-test-9/*": ["deno/*"],
-      "meorphis-test-9": ["deno/index.ts"],
+      "meorphis-test-4/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "meorphis-test-4/*": ["deno/*"],
+      "meorphis-test-4": ["deno/index.ts"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
