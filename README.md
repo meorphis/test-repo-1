@@ -15,7 +15,7 @@ The REST API documentation can be found [on docs.meorphis-test-9.com](https://do
 ## Installationn
 
 ```sh
-pip install meorphis-test-9
+pip install meorphis-test-8
 ```
 
 ## Usage
