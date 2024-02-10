@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0 (2024-02-10)
+
+Full Changelog: [v0.0.1...v0.1.0](https://github.com/meorphis/test-repo-1/compare/v0.0.1...v0.1.0)
+
+### Features
+
+* manual changes ([#9](https://github.com/meorphis/test-repo-1/issues/9)) ([a69dc46](https://github.com/meorphis/test-repo-1/commit/a69dc4639360ed0cad9b3d682884306afc51ec35))
+* sam testing sdk-builder changes :snail: ([#11](https://github.com/meorphis/test-repo-1/issues/11)) ([0ca0020](https://github.com/meorphis/test-repo-1/commit/0ca0020fe6c7934ec9c314d494b9a23e87321760))
+
+
+### Chores
+
+* eric testing stuff ([#12](https://github.com/meorphis/test-repo-1/issues/12)) ([72c354c](https://github.com/meorphis/test-repo-1/commit/72c354c88c132edbd38331dfb7fc115018cada08))
+
 ## 1.0.0 (2024-01-25)
 
 Full Changelog: [v0.0.2...v1.0.0](https://github.com/meorphis/test-repo-1/compare/v0.0.2...v1.0.0)
