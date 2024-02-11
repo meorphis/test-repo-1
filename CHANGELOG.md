@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2024-02-11)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/meorphis/test-repo-1/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* eric testing stuff ([#18](https://github.com/meorphis/test-repo-1/issues/18)) ([47f6498](https://github.com/meorphis/test-repo-1/commit/47f64986b37866018c9e293e36a4414e748b3b7b))
+
 ## 0.1.0 (2024-02-10)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/meorphis/test-repo-1/compare/v0.0.1...v0.1.0)
