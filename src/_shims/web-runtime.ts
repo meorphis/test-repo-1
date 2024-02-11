@@ -9,9 +9,9 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
   const recommendation =
     manuallyImported ?
       `You may need to use polyfills`
-    : `Add one of these imports before your first \`import … from 'meorphis-test-4'\`:
-- \`import 'meorphis-test-4/shims/node'\` (if you're running on Node)
-- \`import 'meorphis-test-4/shims/web'\` (otherwise)
+    : `Add one of these imports before your first \`import … from 'meorphis-test-5'\`:
+- \`import 'meorphis-test-5/shims/node'\` (if you're running on Node)
+- \`import 'meorphis-test-5/shims/web'\` (otherwise)
 `;
 
   let _fetch, _Request, _Response, _Headers;
