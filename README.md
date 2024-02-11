@@ -6,12 +6,10 @@ This library provides convenient access to the Meorphis Test 4 REST API from ser
 
 The REST API documentation can be found [on docs.meorphis-test-4.com](https://docs.meorphis-test-4.com). The full API of this library can be found in [api.md](api.md).
 
-## Installation
+## Installationn
 
 ```sh
-npm install --save meorphis-test-4
-# or
-yarn add meorphis-test-4
+pip install meorphis-test-8
 ```
 
 ## Usage
