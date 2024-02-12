@@ -4,14 +4,12 @@
 
 This library provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docss.meorphis-test-4.com](https://docss.meorphis-test-4.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.meorphis-test-4.com](https://docs.meorphis-test-4.comm). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-npm install --save meorphis-test-4
-# or
-yarn add meorphis-test-4
+pip install meorphis-test-9
 ```
 
 ## Usage
