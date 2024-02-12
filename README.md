@@ -9,7 +9,7 @@ The REST API documentation can be found [on docs.meorphis-test-4.com](https://do
 ## Installationn
 
 ```sh
-pip install meorphis-test-8
+pip install meorphis-test-9
 ```
 
 ## Usage
