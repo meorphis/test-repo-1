@@ -1,6 +1,6 @@
 {
   "name": "meorphis-test-4",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "The official TypeScript library for the Meorphis Test 4 API",
   "author": "Meorphis Test 4 <support2@acme.com>",
   "types": "dist/index.d.ts",

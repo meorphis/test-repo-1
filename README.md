@@ -11,7 +11,9 @@ The REST API documentation can be found [on docs.meorphis-test-4.com](https://do
 ## Installation
 
 ```sh
-pip install meorphis-test-9
+npm install --save meorphis-test-4
+# or
+yarn add meorphis-test-4
 ```
 
 ## Usage
@@ -173,7 +175,7 @@ import MeorphisTest4 from 'meorphis-test-4';
 ```
 
 To do the inverse, add `import "meorphis-test-4/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/meorphis/test-repo-1/tree/stainless/src/_shims#readme).
+This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/meorphis/test-repo-1/tree/v2/src/_shims#readme).
 
 You may also provide a custom `fetch` function when instantiating the client,
 which can be used to inspect or alter the `Request` or `Response` before/after each request:
