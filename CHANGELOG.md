@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.0 (2024-02-20)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/meorphis/test-repo-1/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* another test ([a2ecbec](https://github.com/meorphis/test-repo-1/commit/a2ecbecfb41259a430449d891670e952a4a4f476))
+* update via SDK Studio ([#40](https://github.com/meorphis/test-repo-1/issues/40)) ([548abb8](https://github.com/meorphis/test-repo-1/commit/548abb80999ae1b0a72701f9859b58a98b630745))
+* update via SDK Studio ([#42](https://github.com/meorphis/test-repo-1/issues/42)) ([e911a56](https://github.com/meorphis/test-repo-1/commit/e911a561e2bc10a391a2c6e0a70948984b5b6885))
+* update via SDK Studio ([#43](https://github.com/meorphis/test-repo-1/issues/43)) ([e1bdf55](https://github.com/meorphis/test-repo-1/commit/e1bdf55572230d7c04eb1e54c08f79b0945a6386))
+* update via SDK Studio ([#45](https://github.com/meorphis/test-repo-1/issues/45)) ([2a2e9c0](https://github.com/meorphis/test-repo-1/commit/2a2e9c0e7fb6cf23b60e1fc2ea80fb650641307a))
+
+
+### Chores
+
+* eric testing stuff ([#30](https://github.com/meorphis/test-repo-1/issues/30)) ([d0caeae](https://github.com/meorphis/test-repo-1/commit/d0caeaef0e7314a01fd279a1c8ccda8fa1b1c448))
+
 ## 0.1.1 (2024-02-11)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/meorphis/test-repo-1/compare/v0.1.0...v0.1.1)
