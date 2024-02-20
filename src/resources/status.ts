@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as Core from '/core';
-import { APIResource } from '/resource';
-import * as StatusAPI from '/resources/status';
+import * as Core from 'meorphis-test-4/core';
+import { APIResource } from 'meorphis-test-4/resource';
+import * as StatusAPI from 'meorphis-test-4/resources/status';
 
 export class Status extends APIResource {
   /**
