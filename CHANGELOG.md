@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (2024-02-20)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/meorphis/test-repo-1/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* update via SDK Studio ([#48](https://github.com/meorphis/test-repo-1/issues/48)) ([de6c975](https://github.com/meorphis/test-repo-1/commit/de6c9758e065d83eec1075aa881e2cb7a1e6da60))
+
 ## 0.2.0 (2024-02-20)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/meorphis/test-repo-1/compare/v0.1.1...v0.2.0)
