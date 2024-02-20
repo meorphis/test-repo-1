@@ -1,6 +1,6 @@
 # Meorphis Test 4 Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/meorphis-test-4.svg)](https://npmjs.org/package/meorphis-test-4)
+[![NPM version](https://img.shields.io/npm/v/meorphis-test-5.svg)](https://npmjs.org/package/meorphis-test-5)
 
 This library provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
 
@@ -11,9 +11,9 @@ The REST API documentation can be found [on docs.meorphis-test-4.com](https://do
 ## Installation
 
 ```sh
-npm install --save meorphis-test-4
+npm install --save meorphis-test-5
 # or
-yarn add meorphis-test-4
+yarn add meorphis-test-5
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import MeorphisTest4 from 'meorphis-test-4';
+import MeorphisTest4 from 'meorphis-test-5';
 
 const meorphisTest4 = new MeorphisTest4({
   apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
@@ -44,7 +44,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import MeorphisTest4 from 'meorphis-test-4';
+import MeorphisTest4 from 'meorphis-test-5';
 
 const meorphisTest4 = new MeorphisTest4({
   apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
@@ -170,11 +170,11 @@ add the following import before your first import `from "MeorphisTest4"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'meorphis-test-4/shims/web';
-import MeorphisTest4 from 'meorphis-test-4';
+import 'meorphis-test-5/shims/web';
+import MeorphisTest4 from 'meorphis-test-5';
 ```
 
-To do the inverse, add `import "meorphis-test-4/shims/node"` (which does import polyfills).
+To do the inverse, add `import "meorphis-test-5/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/meorphis/test-repo-1/tree/v2/src/_shims#readme).
 
 You may also provide a custom `fetch` function when instantiating the client,
@@ -182,7 +182,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import MeorphisTest4 from 'meorphis-test-4';
+import MeorphisTest4 from 'meorphis-test-5';
 
 const client = new MeorphisTest4({
   fetch: async (url: RequestInfo, init?: RequestInfo): Promise<Response> => {
@@ -239,7 +239,7 @@ TypeScript >= 4.5 is supported.
 The following runtimes are supported:
 
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import MeorphisTest4 from "npm:meorphis-test-4"`.
+- Deno v1.28.0 or higher, using `import MeorphisTest4 from "npm:meorphis-test-5"`.
 - Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.
