@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/meorphis-test-5.svg)](https://npmjs.org/package/meorphis-test-5)
 
-This library provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
+This provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found [on docs.meorphis-test-4.com](https://docs.meorphis-test-4.com). The full API of this library can be found in [api.md](api.md).
 
