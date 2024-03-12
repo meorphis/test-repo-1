@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2024-03-12)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/meorphis/test-repo-1/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* manual changes ([#50](https://github.com/meorphis/test-repo-1/issues/50)) ([8080580](https://github.com/meorphis/test-repo-1/commit/8080580d966fce210a4da09b6c1f6034fde8e013))
+
 ## 0.3.0 (2024-02-20)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/meorphis/test-repo-1/compare/v0.2.0...v0.3.0)
