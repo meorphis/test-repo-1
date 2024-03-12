@@ -1,8 +1,8 @@
 {
-  "name": "meorphis-test-5",
+  "name": "meorphis-test-9",
   "version": "0.3.0",
-  "description": "The official TypeScript library for the Meorphis Test 4 API",
-  "author": "Meorphis Test 4 <support3@acme.comm>",
+  "description": "The official TypeScript library for the Meorphis Test 9 API",
+  "author": "Meorphis Test 9 <dev-feedback@meorphis-test-9.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -60,8 +60,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "meorphis-test-5": ".",
-    "meorphis-test-5/*": "./src/*"
+    "meorphis-test-9": ".",
+    "meorphis-test-9/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
