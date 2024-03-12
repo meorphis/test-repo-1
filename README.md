@@ -1,17 +1,15 @@
-# Meorphis Test 4 Node API Library
+# Meorphis Test 9 Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/meorphis-test-5.svg)](https://npmjs.org/package/meorphis-test-5)
+[![NPM version](https://img.shields.io/npm/v/meorphis-test-9.svg)](https://npmjs.org/package/meorphis-test-9)
 
-This provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Meorphis Test 9 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.meorphis-test-4.com](https://docs.meorphis-test-4.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.meorphis.com](https://docs.meorphis.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-npm install --save meorphis-test-5
-# or
-yarn add meorphis-test-5
+npm install meorphis-test-9
 ```
 
 ## Usage
@@ -20,17 +18,12 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import MeorphisTest4 from 'meorphis-test-5';
+import MeorphisTest9 from 'meorphis-test-9';
 
-const meorphisTest4 = new MeorphisTest4({
-  apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // defaults to 'production'
-});
+const meorphisTest9 = new MeorphisTest9();
 
 async function main() {
-  const statusRetrieveResponse = await meorphisTest4.status.retrieve();
-
-  console.log(statusRetrieveResponse.message);
+  const pets = await meorphisTest9.pets.list();
 }
 
 main();
@@ -42,15 +35,12 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import MeorphisTest4 from 'meorphis-test-5';
+import MeorphisTest9 from 'meorphis-test-9';
 
-const meorphisTest4 = new MeorphisTest4({
-  apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
-  environment: 'environment_1', // defaults to 'production'
-});
+const meorphisTest9 = new MeorphisTest9();
 
 async function main() {
-  const statusRetrieveResponse: MeorphisTest4.StatusRetrieveResponse = await meorphisTest4.status.retrieve();
+  const pets: MeorphisTest9.Pets = await meorphisTest9.pets.list();
 }
 
 main();
@@ -67,8 +57,8 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const statusRetrieveResponse = await meorphisTest4.status.retrieve().catch((err) => {
-    if (err instanceof MeorphisTest4.APIError) {
+  const pets = await meorphisTest9.pets.list().catch(async (err) => {
+    if (err instanceof MeorphisTest9.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -105,12 +95,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const meorphisTest4 = new MeorphisTest4({
+const meorphisTest9 = new MeorphisTest9({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await meorphisTest4.status.retrieve({
+await meorphisTest9.pets.list({
   maxRetries: 5,
 });
 ```
@@ -122,12 +112,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const meorphisTest4 = new MeorphisTest4({
+const meorphisTest9 = new MeorphisTest9({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await meorphisTest4.status.retrieve({
+await meorphisTest9.pets.list({
   timeout: 5 * 1000,
 });
 ```
@@ -146,15 +136,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const meorphisTest4 = new MeorphisTest4();
+const meorphisTest9 = new MeorphisTest9();
 
-const response = await meorphisTest4.status.retrieve().asResponse();
+const response = await meorphisTest9.pets.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: statusRetrieveResponse, response: raw } = await meorphisTest4.status.retrieve().withResponse();
+const { data: pets, response: raw } = await meorphisTest9.pets.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(statusRetrieveResponse.message);
+console.log(pets);
 ```
 
 ## Customizing the fetch client
@@ -163,27 +153,27 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "MeorphisTest4"`:
+add the following import before your first import `from "MeorphisTest9"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'meorphis-test-5/shims/web';
-import MeorphisTest4 from 'meorphis-test-5';
+import 'meorphis-test-9/shims/web';
+import MeorphisTest9 from 'meorphis-test-9';
 ```
 
-To do the inverse, add `import "meorphis-test-5/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/meorphis/test-repo-1/tree/v2/src/_shims#readme).
+To do the inverse, add `import "meorphis-test-9/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis/test-repo-1/tree/main/src/_shims#readme)).
 
 You may also provide a custom `fetch` function when instantiating the client,
 which can be used to inspect or alter the `Request` or `Response` before/after each request:
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import MeorphisTest4 from 'meorphis-test-5';
+import MeorphisTest9 from 'meorphis-test-9';
 
-const client = new MeorphisTest4({
-  fetch: async (url: RequestInfo, init?: RequestInfo): Promise<Response> => {
+const client = new MeorphisTest9({
+  fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
     console.log('Got response', response);
@@ -204,18 +194,17 @@ If you would like to disable or customize this behavior, for example to use the 
 <!-- prettier-ignore -->
 ```ts
 import http from 'http';
-import HttpsProxyAgent from 'https-proxy-agent';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const meorphisTest4 = new MeorphisTest4({
+const meorphisTest9 = new MeorphisTest9({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await meorphisTest4.status.retrieve({
-  baseURL: 'http://localhost:8080/test-api',
+await meorphisTest9.pets.list({
   httpAgent: new http.Agent({ keepAlive: false }),
-})
+});
 ```
 
 ## Semantic Versioning
@@ -237,7 +226,7 @@ TypeScript >= 4.5 is supported.
 The following runtimes are supported:
 
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import MeorphisTest4 from "npm:meorphis-test-5"`.
+- Deno v1.28.0 or higher, using `import MeorphisTest9 from "npm:meorphis-test-9"`.
 - Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.
