@@ -31,7 +31,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['MEORPHIS_TEST_40_BASE_URL'].
+   * Defaults to process.env['MEORPHIS_TEST_42_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -85,18 +85,18 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Meorphis Test 40 API. */
-export class MeorphisTest40 extends Core.APIClient {
+/** API Client for interfacing with the Meorphis Test 42 API. */
+export class MeorphisTest42 extends Core.APIClient {
   apiKey: string;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Meorphis Test 40 API.
+   * API Client for interfacing with the Meorphis Test 42 API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['MEORPHIS_TEST_40_API_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['MEORPHIS_TEST_40_BASE_URL'] ?? https://api.{username}.dev.bolt.me/v3] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['MEORPHIS_TEST_42_BASE_URL'] ?? https://api.{username}.dev.bolt.me/v3] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -105,13 +105,13 @@ export class MeorphisTest40 extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = Core.readEnv('MEORPHIS_TEST_40_BASE_URL'),
+    baseURL = Core.readEnv('MEORPHIS_TEST_42_BASE_URL'),
     apiKey = Core.readEnv('MEORPHIS_TEST_40_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.MeorphisTest40Error(
-        "The MEORPHIS_TEST_40_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest40 client with an apiKey option, like new MeorphisTest40({ apiKey: 'My API Key' }).",
+      throw new Errors.MeorphisTest42Error(
+        "The MEORPHIS_TEST_40_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest42 client with an apiKey option, like new MeorphisTest42({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -123,8 +123,8 @@ export class MeorphisTest40 extends Core.APIClient {
     };
 
     if (baseURL && opts.environment) {
-      throw new Errors.MeorphisTest40Error(
-        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_40_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      throw new Errors.MeorphisTest42Error(
+        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_42_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
       );
     }
 
@@ -162,9 +162,9 @@ export class MeorphisTest40 extends Core.APIClient {
     return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
-  static MeorphisTest40 = this;
+  static MeorphisTest42 = this;
 
-  static MeorphisTest40Error = Errors.MeorphisTest40Error;
+  static MeorphisTest42Error = Errors.MeorphisTest42Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -183,7 +183,7 @@ export class MeorphisTest40 extends Core.APIClient {
 }
 
 export const {
-  MeorphisTest40Error,
+  MeorphisTest42Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -201,7 +201,7 @@ export const {
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace MeorphisTest40 {
+export namespace MeorphisTest42 {
   export import RequestOptions = Core.RequestOptions;
 
   export import Accounts = API.Accounts;
@@ -226,4 +226,4 @@ export namespace MeorphisTest40 {
   export import Testings = API.Testings;
 }
 
-export default MeorphisTest40;
+export default MeorphisTest42;
