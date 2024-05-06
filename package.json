@@ -1,8 +1,8 @@
 {
   "name": "meorphis-test-40",
   "version": "0.0.1-alpha.0",
-  "description": "The official TypeScript library for the Meorphis Test 40 API",
-  "author": "Meorphis Test 40 <api-help@bolt.com>",
+  "description": "The official TypeScript library for the Meorphis Test 42 API",
+  "author": "Meorphis Test 42 <api-help@bolt.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
