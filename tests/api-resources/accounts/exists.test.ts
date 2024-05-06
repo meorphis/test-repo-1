@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest42 from 'meorphis-test-40';
+import MeorphisTest43 from 'meorphis-test-40';
 import { Response } from 'node-fetch';
 
-const meorphisTest42 = new MeorphisTest42({
+const meorphisTest43 = new MeorphisTest43({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource exists', () => {
   test('list: only required params', async () => {
-    const responsePromise = meorphisTest42.accounts.exists.list({
+    const responsePromise = meorphisTest43.accounts.exists.list({
       identifier: { identifier_type: 'email', identifier_value: 'alice@example.com' },
       'X-Publishable-Key': 'string',
     });
@@ -24,7 +24,7 @@ describe('resource exists', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await meorphisTest42.accounts.exists.list({
+    const response = await meorphisTest43.accounts.exists.list({
       identifier: { identifier_type: 'email', identifier_value: 'alice@example.com' },
       'X-Publishable-Key': 'string',
     });
