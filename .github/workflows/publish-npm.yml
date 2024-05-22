@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: inputs.tag
+          ref: ${{ inputs.tag }}
 
       - name: Set up Node
         uses: actions/setup-node@v3
