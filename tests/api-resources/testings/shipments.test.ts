@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest40 from 'meorphis-test-40';
+import MeorphisTest41 from 'meorphis-test-41';
 import { Response } from 'node-fetch';
 
-const meorphisTest40 = new MeorphisTest40({
+const meorphisTest41 = new MeorphisTest41({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource shipments', () => {
   test('testingShipmentTrackingCreate: only required params', async () => {
-    const responsePromise = meorphisTest40.testings.shipments.testingShipmentTrackingCreate({
+    const responsePromise = meorphisTest41.testings.shipments.testingShipmentTrackingCreate({
       status: 'in_transit',
       tracking_details: [{}, {}, {}],
       tracking_number: 'MockBolt-143292',
@@ -25,7 +25,7 @@ describe('resource shipments', () => {
   });
 
   test('testingShipmentTrackingCreate: required and optional params', async () => {
-    const response = await meorphisTest40.testings.shipments.testingShipmentTrackingCreate({
+    const response = await meorphisTest41.testings.shipments.testingShipmentTrackingCreate({
       status: 'in_transit',
       tracking_details: [
         {

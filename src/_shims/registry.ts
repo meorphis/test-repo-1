@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'meorphis-test-40/shims/${shims.kind}'\` before importing anything else from meorphis-test-40`,
+      `you must \`import 'meorphis-test-41/shims/${shims.kind}'\` before importing anything else from meorphis-test-41`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'meorphis-test-40/shims/${shims.kind}'\` after \`import 'meorphis-test-40/shims/${kind}'\``,
+      `can't \`import 'meorphis-test-41/shims/${shims.kind}'\` after \`import 'meorphis-test-41/shims/${kind}'\``,
     );
   }
   auto = options.auto;
