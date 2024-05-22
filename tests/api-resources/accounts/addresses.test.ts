@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest41 from 'meorphis-test-41';
+import MeorphisTest40 from 'meorphis-test-40';
 import { Response } from 'node-fetch';
 
-const meorphisTest41 = new MeorphisTest41({
+const meorphisTest40 = new MeorphisTest40({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource addresses', () => {
   test('update: only required params', async () => {
-    const responsePromise = meorphisTest41.accounts.addresses.update('D4g3h5tBuVYK9', {
+    const responsePromise = meorphisTest40.accounts.addresses.update('D4g3h5tBuVYK9', {
       country_code: 'US',
       first_name: 'Alice',
       last_name: 'Baker',
@@ -29,7 +29,7 @@ describe('resource addresses', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await meorphisTest41.accounts.addresses.update('D4g3h5tBuVYK9', {
+    const response = await meorphisTest40.accounts.addresses.update('D4g3h5tBuVYK9', {
       country_code: 'US',
       first_name: 'Alice',
       last_name: 'Baker',
@@ -47,7 +47,7 @@ describe('resource addresses', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = meorphisTest41.accounts.addresses.delete('D4g3h5tBuVYK9', {
+    const responsePromise = meorphisTest40.accounts.addresses.delete('D4g3h5tBuVYK9', {
       'X-Publishable-Key': 'string',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -60,13 +60,13 @@ describe('resource addresses', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await meorphisTest41.accounts.addresses.delete('D4g3h5tBuVYK9', {
+    const response = await meorphisTest40.accounts.addresses.delete('D4g3h5tBuVYK9', {
       'X-Publishable-Key': 'string',
     });
   });
 
   test('accountAddressCreate: only required params', async () => {
-    const responsePromise = meorphisTest41.accounts.addresses.accountAddressCreate({
+    const responsePromise = meorphisTest40.accounts.addresses.accountAddressCreate({
       country_code: 'US',
       first_name: 'Alice',
       last_name: 'Baker',
@@ -85,7 +85,7 @@ describe('resource addresses', () => {
   });
 
   test('accountAddressCreate: required and optional params', async () => {
-    const response = await meorphisTest41.accounts.addresses.accountAddressCreate({
+    const response = await meorphisTest40.accounts.addresses.accountAddressCreate({
       country_code: 'US',
       first_name: 'Alice',
       last_name: 'Baker',
