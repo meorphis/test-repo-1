@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest44 from 'meorphis-test-44';
+import MeorphisTest40 from 'meorphis-test-40';
 import { Response } from 'node-fetch';
 
-const meorphisTest44 = new MeorphisTest44({
+const meorphisTest40 = new MeorphisTest40({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -11,7 +11,7 @@ const meorphisTest44 = new MeorphisTest44({
 describe('resource webhooks', () => {
   // skipped: currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url
   test.skip('create: only required params', async () => {
-    const responsePromise = meorphisTest44.webhooks.create({
+    const responsePromise = meorphisTest40.webhooks.create({
       event: { '.tag': 'group', event_group: 'all' },
       url: 'https://www.example.com/webhook',
     });
@@ -26,14 +26,14 @@ describe('resource webhooks', () => {
 
   // skipped: currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url
   test.skip('create: required and optional params', async () => {
-    const response = await meorphisTest44.webhooks.create({
+    const response = await meorphisTest40.webhooks.create({
       event: { '.tag': 'group', event_group: 'all' },
       url: 'https://www.example.com/webhook',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = meorphisTest44.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g');
+    const responsePromise = meorphisTest40.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -46,12 +46,12 @@ describe('resource webhooks', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      meorphisTest44.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(MeorphisTest44.NotFoundError);
+      meorphisTest40.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(MeorphisTest40.NotFoundError);
   });
 
   test('list: only required params', async () => {
-    const responsePromise = meorphisTest44.webhooks.list({ 'X-Publishable-Key': 'string' });
+    const responsePromise = meorphisTest40.webhooks.list({ 'X-Publishable-Key': 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,11 +62,11 @@ describe('resource webhooks', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await meorphisTest44.webhooks.list({ 'X-Publishable-Key': 'string' });
+    const response = await meorphisTest40.webhooks.list({ 'X-Publishable-Key': 'string' });
   });
 
   test('delete', async () => {
-    const responsePromise = meorphisTest44.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g');
+    const responsePromise = meorphisTest40.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,7 +79,7 @@ describe('resource webhooks', () => {
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      meorphisTest44.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(MeorphisTest44.NotFoundError);
+      meorphisTest40.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(MeorphisTest40.NotFoundError);
   });
 });
