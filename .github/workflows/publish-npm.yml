@@ -4,9 +4,7 @@
 name: Publish NPM
 on:
   workflow_dispatch:
-
-  release:
-    types: [published]
+    inputs: { tag }
 
 jobs:
   publish:
@@ -16,6 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        ref: inputs.tag
 
       - name: Set up Node
         uses: actions/setup-node@v3
