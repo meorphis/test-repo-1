@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test-40/core';
-import { APIResource } from 'meorphis-test-40/resource';
-import * as CallbacksAPI from 'meorphis-test-40/resources/merchants/callbacks';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import * as CallbacksAPI from './callbacks';
 
 export class Callbacks extends APIResource {
   /**

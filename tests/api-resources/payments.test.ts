@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest43 from 'meorphis-test-40';
+import MeorphisTest44 from 'meorphis-test-44';
 import { Response } from 'node-fetch';
 
-const meorphisTest43 = new MeorphisTest43({
+const meorphisTest44 = new MeorphisTest44({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource payments', () => {
   test('create: only required params', async () => {
-    const responsePromise = meorphisTest43.payments.create({
+    const responsePromise = meorphisTest44.payments.create({
       cart: { amounts: { total: 10000, currency: 'USD' }, order_reference: 'order_100' },
       payment_method: { '.tag': 'saved_payment_method', id: 'id' },
       'X-Publishable-Key': 'string',
@@ -25,7 +25,7 @@ describe('resource payments', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await meorphisTest43.payments.create({
+    const response = await meorphisTest44.payments.create({
       cart: {
         amounts: { total: 10000, currency: 'USD', tax: 1000 },
         order_reference: 'order_100',

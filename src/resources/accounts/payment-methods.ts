@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test-40/core';
-import { APIResource } from 'meorphis-test-40/resource';
-import * as PaymentMethodsAPI from 'meorphis-test-40/resources/accounts/payment-methods';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import * as PaymentMethodsAPI from './payment-methods';
 
 export class PaymentMethods extends APIResource {
   /**
@@ -60,8 +60,6 @@ export interface PaymentMethodAccountAddPaymentMethodResponse {
    */
   network: 'visa' | 'mastercard' | 'amex' | 'discover' | 'jcb' | 'unionpay' | 'alliancedata' | 'citiplcc';
 
-  type: unknown;
-
   id?: string;
 
   /**
@@ -116,11 +114,6 @@ export interface PaymentMethodAccountAddPaymentMethodParams {
    * Body param: The credit card network.
    */
   network: 'visa' | 'mastercard' | 'amex' | 'discover' | 'jcb' | 'unionpay' | 'alliancedata' | 'citiplcc';
-
-  /**
-   * Body param:
-   */
-  type: unknown;
 
   /**
    * Header param: The publicly viewable identifier used to identify a merchant

@@ -1,8 +1,8 @@
 {
-  "name": "meorphis-test-40",
+  "name": "meorphis-test-44",
   "version": "0.0.1-alpha.0",
-  "description": "The official TypeScript library for the Meorphis Test 43 API",
-  "author": "Meorphis Test 43 <api-help@bolt.com>",
+  "description": "The official TypeScript library for the Meorphis Test 44 API",
+  "author": "Meorphis Test 44 <api-help@bolt.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -63,8 +63,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "meorphis-test-40": ".",
-    "meorphis-test-40/*": "./src/*"
+    "meorphis-test-44": ".",
+    "meorphis-test-44/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
