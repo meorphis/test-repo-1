@@ -1,12 +1,12 @@
 {
-  "name": "test-repo-1",
+  "name": "meorphis-test-40",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Meorphis Test 40 API",
   "author": "Meorphis Test 40 <api-help3@bolt.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:meorphis/meorphis-test",
+  "repository": "github:meorphis/test-repo-1",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
@@ -63,8 +63,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "test-repo-1": ".",
-    "test-repo-1/*": "./src/*"
+    "meorphis-test-40": ".",
+    "meorphis-test-40/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
