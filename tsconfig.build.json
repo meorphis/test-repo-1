@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "meorphis-test-41/*": ["dist/src/*"],
-      "meorphis-test-41": ["dist/src/index.ts"],
+      "test-repo-1/*": ["dist/src/*"],
+      "test-repo-1": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

@@ -1,6 +1,6 @@
 import { VERSION } from './version';
 import {
-  MeorphisTest41Error,
+  MeorphisTest40Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -97,9 +97,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'meorphis-test-41'`:
-   * - `import 'meorphis-test-41/shims/node'` (if you're running on Node)
-   * - `import 'meorphis-test-41/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from 'test-repo-1'`:
+   * - `import 'test-repo-1/shims/node'` (if you're running on Node)
+   * - `import 'test-repo-1/shims/web'` (otherwise)
    */
   asResponse(): Promise<Response> {
     return this.responsePromise.then((p) => p.response);
@@ -113,9 +113,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'meorphis-test-41'`:
-   * - `import 'meorphis-test-41/shims/node'` (if you're running on Node)
-   * - `import 'meorphis-test-41/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from 'test-repo-1'`:
+   * - `import 'test-repo-1/shims/node'` (if you're running on Node)
+   * - `import 'test-repo-1/shims/web'` (otherwise)
    */
   async withResponse(): Promise<{ data: T; response: Response }> {
     const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
@@ -472,7 +472,7 @@ export abstract class APIClient {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new MeorphisTest41Error(
+        throw new MeorphisTest40Error(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -618,7 +618,7 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
   async getNextPage(): Promise<this> {
     const nextInfo = this.nextPageInfo();
     if (!nextInfo) {
-      throw new MeorphisTest41Error(
+      throw new MeorphisTest40Error(
         'No next page expected; please check `.hasNextPage()` before calling `.getNextPage()`.',
       );
     }
@@ -949,10 +949,10 @@ export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve
 
 const validatePositiveInteger = (name: string, n: unknown): number => {
   if (typeof n !== 'number' || !Number.isInteger(n)) {
-    throw new MeorphisTest41Error(`${name} must be an integer`);
+    throw new MeorphisTest40Error(`${name} must be an integer`);
   }
   if (n < 0) {
-    throw new MeorphisTest41Error(`${name} must be a positive integer`);
+    throw new MeorphisTest40Error(`${name} must be a positive integer`);
   }
   return n;
 };
@@ -964,7 +964,7 @@ export const castToError = (err: any): Error => {
 
 export const ensurePresent = <T>(value: T | null | undefined): T => {
   if (value == null)
-    throw new MeorphisTest41Error(`Expected a value to be given but received ${value} instead.`);
+    throw new MeorphisTest40Error(`Expected a value to be given but received ${value} instead.`);
   return value;
 };
 
@@ -989,14 +989,14 @@ export const coerceInteger = (value: unknown): number => {
   if (typeof value === 'number') return Math.round(value);
   if (typeof value === 'string') return parseInt(value, 10);
 
-  throw new MeorphisTest41Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+  throw new MeorphisTest40Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
 };
 
 export const coerceFloat = (value: unknown): number => {
   if (typeof value === 'number') return value;
   if (typeof value === 'string') return parseFloat(value);
 
-  throw new MeorphisTest41Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+  throw new MeorphisTest40Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
 };
 
 export const coerceBoolean = (value: unknown): boolean => {
@@ -1062,7 +1062,7 @@ function applyHeadersMut(targetHeaders: Headers, newHeaders: Headers): void {
 
 export function debug(action: string, ...args: any[]) {
   if (typeof process !== 'undefined' && process?.env?.['DEBUG'] === 'true') {
-    console.log(`MeorphisTest41:DEBUG:${action}`, ...args);
+    console.log(`MeorphisTest40:DEBUG:${action}`, ...args);
   }
 }
 
@@ -1139,7 +1139,7 @@ export const toBase64 = (str: string | null | undefined): string => {
     return btoa(str);
   }
 
-  throw new MeorphisTest41Error('Cannot generate b64 string; Expected `Buffer` or `btoa` to be defined');
+  throw new MeorphisTest40Error('Cannot generate b64 string; Expected `Buffer` or `btoa` to be defined');
 };
 
 export function isObj(obj: unknown): obj is Record<string, unknown> {
