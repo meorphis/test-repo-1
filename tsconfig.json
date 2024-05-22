@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "meorphis-test-44/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "meorphis-test-44/*": ["src/*"],
-      "meorphis-test-44": ["src/index.ts"],
+      "meorphis-test-40/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "meorphis-test-40/*": ["src/*"],
+      "meorphis-test-40": ["src/index.ts"],
     },
     "noEmit": true,
 
