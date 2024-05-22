@@ -55,12 +55,12 @@ cd meorphis-test
 # With yarn
 yarn link
 cd ../my-package
-yarn link meorphis-test-41
+yarn link meorphis-test-40
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global meorphis-test-41
+pnpm link -—global meorphis-test-40
 ```
 
 ## Running tests
