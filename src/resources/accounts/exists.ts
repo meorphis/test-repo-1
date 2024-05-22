@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test-40/core';
-import { APIResource } from 'meorphis-test-40/resource';
-import * as ExistsAPI from 'meorphis-test-40/resources/accounts/exists';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import * as ExistsAPI from './exists';
 
 export class Exists extends APIResource {
   /**

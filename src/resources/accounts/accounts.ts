@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from 'meorphis-test-40/core';
-import { APIResource } from 'meorphis-test-40/resource';
-import * as AccountsAPI from 'meorphis-test-40/resources/accounts/accounts';
-import * as AddressesAPI from 'meorphis-test-40/resources/accounts/addresses';
-import * as ExistsAPI from 'meorphis-test-40/resources/accounts/exists';
-import * as PaymentMethodsAPI from 'meorphis-test-40/resources/accounts/payment-methods';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import * as AccountsAPI from './accounts';
+import * as AddressesAPI from './addresses';
+import * as ExistsAPI from './exists';
+import * as PaymentMethodsAPI from './payment-methods';
 
 export class Accounts extends APIResource {
   addresses: AddressesAPI.Addresses = new AddressesAPI.Addresses(this._client);
@@ -81,8 +81,6 @@ export namespace AccountAccountGetResponse {
      * The credit card network.
      */
     network: 'visa' | 'mastercard' | 'amex' | 'discover' | 'jcb' | 'unionpay' | 'alliancedata' | 'citiplcc';
-
-    type: unknown;
 
     id?: string;
 

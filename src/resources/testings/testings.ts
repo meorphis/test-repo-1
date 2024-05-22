@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from 'meorphis-test-40/resource';
-import * as AccountsAPI from 'meorphis-test-40/resources/testings/accounts';
-import * as CreditCardsAPI from 'meorphis-test-40/resources/testings/credit-cards';
-import * as ShipmentsAPI from 'meorphis-test-40/resources/testings/shipments';
+import { APIResource } from '../../resource';
+import * as AccountsAPI from './accounts';
+import * as CreditCardsAPI from './credit-cards';
+import * as ShipmentsAPI from './shipments';
 
 export class Testings extends APIResource {
   accounts: AccountsAPI.Accounts = new AccountsAPI.Accounts(this._client);
