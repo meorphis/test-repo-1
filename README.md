@@ -227,7 +227,7 @@ import MeorphisTest40 from 'test-repo-1';
 ```
 
 To do the inverse, add `import "test-repo-1/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis/meorphis-test/tree/main/src/_shims#readme)).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis/test-repo-1/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -287,7 +287,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/meorphis/meorphis-test/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/meorphis/test-repo-1/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
