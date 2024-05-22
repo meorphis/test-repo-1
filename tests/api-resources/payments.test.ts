@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest40 from 'test-repo-1';
+import MeorphisTest40 from 'meorphis-test-40';
 import { Response } from 'node-fetch';
 
 const meorphisTest40 = new MeorphisTest40({
