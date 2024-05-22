@@ -2,11 +2,11 @@
   "name": "test-repo-1",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Meorphis Test 40 API",
-  "author": "Meorphis Test 40 <api-help2@bolt.com>",
+  "author": "Meorphis Test 40 <api-help3@bolt.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:meorphis/test-repo-1",
+  "repository": "github:meorphis/meorphis-test",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
