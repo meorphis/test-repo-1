@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest41 from 'meorphis-test-41';
+import MeorphisTest40 from 'meorphis-test-40';
 import { Response } from 'node-fetch';
 
-const meorphisTest41 = new MeorphisTest41({
+const meorphisTest40 = new MeorphisTest40({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource paymentMethods', () => {
   test('delete: only required params', async () => {
-    const responsePromise = meorphisTest41.accounts.paymentMethods.delete('D4g3h5tBuVYK9', {
+    const responsePromise = meorphisTest40.accounts.paymentMethods.delete('D4g3h5tBuVYK9', {
       'X-Publishable-Key': 'string',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -23,13 +23,13 @@ describe('resource paymentMethods', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await meorphisTest41.accounts.paymentMethods.delete('D4g3h5tBuVYK9', {
+    const response = await meorphisTest40.accounts.paymentMethods.delete('D4g3h5tBuVYK9', {
       'X-Publishable-Key': 'string',
     });
   });
 
   test('accountAddPaymentMethod: only required params', async () => {
-    const responsePromise = meorphisTest41.accounts.paymentMethods.accountAddPaymentMethod({
+    const responsePromise = meorphisTest40.accounts.paymentMethods.accountAddPaymentMethod({
       token: 'a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0',
       '.tag': 'credit_card',
       billing_address: { '.tag': 'id', id: 'D4g3h5tBuVYK9' },
@@ -49,7 +49,7 @@ describe('resource paymentMethods', () => {
   });
 
   test('accountAddPaymentMethod: required and optional params', async () => {
-    const response = await meorphisTest41.accounts.paymentMethods.accountAddPaymentMethod({
+    const response = await meorphisTest40.accounts.paymentMethods.accountAddPaymentMethod({
       token: 'a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0',
       '.tag': 'credit_card',
       billing_address: { '.tag': 'id', id: 'D4g3h5tBuVYK9' },
