@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^meorphis-test-41$': '<rootDir>/src/index.ts',
-    '^meorphis-test-41/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^meorphis-test-41/(.*)$': '<rootDir>/src/$1',
+    '^test-repo-1$': '<rootDir>/src/index.ts',
+    '^test-repo-1/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^test-repo-1/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

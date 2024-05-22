@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest41 from 'meorphis-test-41';
+import MeorphisTest40 from 'test-repo-1';
 import { Response } from 'node-fetch';
 
-const meorphisTest41 = new MeorphisTest41({
+const meorphisTest40 = new MeorphisTest40({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource callbacks', () => {
   test('list: only required params', async () => {
-    const responsePromise = meorphisTest41.merchants.callbacks.list({ 'X-Publishable-Key': 'string' });
+    const responsePromise = meorphisTest40.merchants.callbacks.list({ 'X-Publishable-Key': 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,11 +21,11 @@ describe('resource callbacks', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await meorphisTest41.merchants.callbacks.list({ 'X-Publishable-Key': 'string' });
+    const response = await meorphisTest40.merchants.callbacks.list({ 'X-Publishable-Key': 'string' });
   });
 
   test('merchantCallbacksUpdate: only required params', async () => {
-    const responsePromise = meorphisTest41.merchants.callbacks.merchantCallbacksUpdate({
+    const responsePromise = meorphisTest40.merchants.callbacks.merchantCallbacksUpdate({
       'X-Publishable-Key': 'string',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -38,7 +38,7 @@ describe('resource callbacks', () => {
   });
 
   test('merchantCallbacksUpdate: required and optional params', async () => {
-    const response = await meorphisTest41.merchants.callbacks.merchantCallbacksUpdate({
+    const response = await meorphisTest40.merchants.callbacks.merchantCallbacksUpdate({
       'X-Publishable-Key': 'string',
       account_page: 'https://www.example.com/account',
       base_domain: 'https://www.example.com/',
