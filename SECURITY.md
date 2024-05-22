@@ -20,7 +20,7 @@ or products provided by Meorphis Test 40 please follow the respective company's 
 
 ### Meorphis Test 40 Terms and Policies
 
-Please contact api-help@bolt.com for any questions or concerns regarding security of our services.
+Please contact api-help1@bolt.com for any questions or concerns regarding security of our services.
 
 ---
 
