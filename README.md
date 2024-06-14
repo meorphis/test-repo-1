@@ -1,6 +1,6 @@
 # Meorphis Test 40 Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/meorphis-test-40.svg)](https://npmjs.org/package/meorphis-test-40)
+[![NPM version](https://img.shields.io/npm/v/meorphis-test-40.svg)](https://npmjs.org/package/meorphis-test-40) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/meorphis-test-40)
 
 This library provides convenient access to the Meorphis Test 40 REST API from server-side TypeScript or JavaScript.
 
@@ -11,11 +11,8 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:meorphis/test-repo-1.git
+npm install meorphis-test-40
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install meorphis-test-40`
 
 ## Usage
 
