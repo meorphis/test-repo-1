@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-06-14)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/meorphis/test-repo-1/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Chores
+
+* update SDK settings ([#9](https://github.com/meorphis/test-repo-1/issues/9)) ([3680056](https://github.com/meorphis/test-repo-1/commit/3680056e2d84371e6cf925b2651bc53209607f5c))
+
 ## 0.1.0-alpha.1 (2024-05-22)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/meorphis/test-repo-1/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
