@@ -1,6 +1,6 @@
 import { VERSION } from './version';
 import {
-  MeorphisTest40Error,
+  MeorphisTest4Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -84,8 +84,10 @@ export class APIPromise<T> extends Promise<T> {
     });
   }
 
-  _thenUnwrap<U>(transform: (data: T) => U): APIPromise<U> {
-    return new APIPromise(this.responsePromise, async (props) => transform(await this.parseResponse(props)));
+  _thenUnwrap<U>(transform: (data: T, props: APIResponseProps) => U): APIPromise<U> {
+    return new APIPromise(this.responsePromise, async (props) =>
+      transform(await this.parseResponse(props), props),
+    );
   }
 
   /**
@@ -97,9 +99,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'meorphis-test-40'`:
-   * - `import 'meorphis-test-40/shims/node'` (if you're running on Node)
-   * - `import 'meorphis-test-40/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from 'meorphis-test-5'`:
+   * - `import 'meorphis-test-5/shims/node'` (if you're running on Node)
+   * - `import 'meorphis-test-5/shims/web'` (otherwise)
    */
   asResponse(): Promise<Response> {
     return this.responsePromise.then((p) => p.response);
@@ -113,9 +115,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'meorphis-test-40'`:
-   * - `import 'meorphis-test-40/shims/node'` (if you're running on Node)
-   * - `import 'meorphis-test-40/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from 'meorphis-test-5'`:
+   * - `import 'meorphis-test-5/shims/node'` (if you're running on Node)
+   * - `import 'meorphis-test-5/shims/web'` (otherwise)
    */
   async withResponse(): Promise<{ data: T; response: Response }> {
     const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
@@ -274,7 +276,10 @@ export abstract class APIClient {
     return null;
   }
 
-  buildRequest<Req>(options: FinalRequestOptions<Req>): { req: RequestInit; url: string; timeout: number } {
+  buildRequest<Req>(
+    options: FinalRequestOptions<Req>,
+    { retryCount = 0 }: { retryCount?: number } = {},
+  ): { req: RequestInit; url: string; timeout: number } {
     const { method, path, query, headers: headers = {} } = options;
 
     const body =
@@ -306,7 +311,7 @@ export abstract class APIClient {
       headers[this.idempotencyHeader] = options.idempotencyKey;
     }
 
-    const reqHeaders = this.buildHeaders({ options, headers, contentLength });
+    const reqHeaders = this.buildHeaders({ options, headers, contentLength, retryCount });
 
     const req: RequestInit = {
       method,
@@ -325,10 +330,12 @@ export abstract class APIClient {
     options,
     headers,
     contentLength,
+    retryCount,
   }: {
     options: FinalRequestOptions;
     headers: Record<string, string | null | undefined>;
     contentLength: string | null | undefined;
+    retryCount: number;
   }): Record<string, string> {
     const reqHeaders: Record<string, string> = {};
     if (contentLength) {
@@ -342,6 +349,16 @@ export abstract class APIClient {
     // let builtin fetch set the Content-Type for multipart bodies
     if (isMultipartBody(options.body) && shimsKind !== 'node') {
       delete reqHeaders['content-type'];
+    }
+
+    // Don't set the retry count header if it was already set or removed through default headers or by the
+    // caller. We check `defaultHeaders` and `headers`, which can contain nulls, instead of `reqHeaders` to
+    // account for the removal case.
+    if (
+      getHeader(defaultHeaders, 'x-stainless-retry-count') === undefined &&
+      getHeader(headers, 'x-stainless-retry-count') === undefined
+    ) {
+      reqHeaders['x-stainless-retry-count'] = String(retryCount);
     }
 
     this.validateHeaders(reqHeaders, headers);
@@ -379,7 +396,7 @@ export abstract class APIClient {
     error: Object | undefined,
     message: string | undefined,
     headers: Headers | undefined,
-  ) {
+  ): APIError {
     return APIError.generate(status, error, message, headers);
   }
 
@@ -395,13 +412,14 @@ export abstract class APIClient {
     retriesRemaining: number | null,
   ): Promise<APIResponseProps> {
     const options = await optionsInput;
+    const maxRetries = options.maxRetries ?? this.maxRetries;
     if (retriesRemaining == null) {
-      retriesRemaining = options.maxRetries ?? this.maxRetries;
+      retriesRemaining = maxRetries;
     }
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = this.buildRequest(options);
+    const { req, url, timeout } = this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
 
     await this.prepareRequest(req, { url, options });
 
@@ -486,7 +504,7 @@ export abstract class APIClient {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new MeorphisTest40Error(
+        throw new MeorphisTest4Error(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -632,7 +650,7 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
   async getNextPage(): Promise<this> {
     const nextInfo = this.nextPageInfo();
     if (!nextInfo) {
-      throw new MeorphisTest40Error(
+      throw new MeorphisTest4Error(
         'No next page expected; please check `.hasNextPage()` before calling `.getNextPage()`.',
       );
     }
@@ -650,9 +668,9 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
     return await this.#client.requestAPIList(this.constructor as any, nextOptions);
   }
 
-  async *iterPages() {
+  async *iterPages(): AsyncGenerator<this> {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    let page: AbstractPage<Item> = this;
+    let page: this = this;
     yield page;
     while (page.hasNextPage()) {
       page = await page.getNextPage();
@@ -660,7 +678,7 @@ export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
     }
   }
 
-  async *[Symbol.asyncIterator]() {
+  async *[Symbol.asyncIterator](): AsyncGenerator<Item> {
     for await (const page of this.iterPages()) {
       for (const item of page.getPaginatedItems()) {
         yield item;
@@ -703,7 +721,7 @@ export class PagePromise<
    *      console.log(item)
    *    }
    */
-  async *[Symbol.asyncIterator]() {
+  async *[Symbol.asyncIterator](): AsyncGenerator<Item> {
     const page = await this;
     for await (const item of page) {
       yield item;
@@ -968,22 +986,27 @@ export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve
 
 const validatePositiveInteger = (name: string, n: unknown): number => {
   if (typeof n !== 'number' || !Number.isInteger(n)) {
-    throw new MeorphisTest40Error(`${name} must be an integer`);
+    throw new MeorphisTest4Error(`${name} must be an integer`);
   }
   if (n < 0) {
-    throw new MeorphisTest40Error(`${name} must be a positive integer`);
+    throw new MeorphisTest4Error(`${name} must be a positive integer`);
   }
   return n;
 };
 
 export const castToError = (err: any): Error => {
   if (err instanceof Error) return err;
+  if (typeof err === 'object' && err !== null) {
+    try {
+      return new Error(JSON.stringify(err));
+    } catch {}
+  }
   return new Error(err);
 };
 
 export const ensurePresent = <T>(value: T | null | undefined): T => {
   if (value == null)
-    throw new MeorphisTest40Error(`Expected a value to be given but received ${value} instead.`);
+    throw new MeorphisTest4Error(`Expected a value to be given but received ${value} instead.`);
   return value;
 };
 
@@ -1008,14 +1031,14 @@ export const coerceInteger = (value: unknown): number => {
   if (typeof value === 'number') return Math.round(value);
   if (typeof value === 'string') return parseInt(value, 10);
 
-  throw new MeorphisTest40Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+  throw new MeorphisTest4Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
 };
 
 export const coerceFloat = (value: unknown): number => {
   if (typeof value === 'number') return value;
   if (typeof value === 'string') return parseFloat(value);
 
-  throw new MeorphisTest40Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+  throw new MeorphisTest4Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
 };
 
 export const coerceBoolean = (value: unknown): boolean => {
@@ -1081,7 +1104,7 @@ function applyHeadersMut(targetHeaders: Headers, newHeaders: Headers): void {
 
 export function debug(action: string, ...args: any[]) {
   if (typeof process !== 'undefined' && process?.env?.['DEBUG'] === 'true') {
-    console.log(`MeorphisTest40:DEBUG:${action}`, ...args);
+    console.log(`MeorphisTest4:DEBUG:${action}`, ...args);
   }
 }
 
@@ -1116,7 +1139,15 @@ export const isHeadersProtocol = (headers: any): headers is HeadersProtocol => {
   return typeof headers?.get === 'function';
 };
 
-export const getRequiredHeader = (headers: HeadersLike, header: string): string => {
+export const getRequiredHeader = (headers: HeadersLike | Headers, header: string): string => {
+  const foundHeader = getHeader(headers, header);
+  if (foundHeader === undefined) {
+    throw new Error(`Could not find ${header} header`);
+  }
+  return foundHeader;
+};
+
+export const getHeader = (headers: HeadersLike | Headers, header: string): string | undefined => {
   const lowerCasedHeader = header.toLowerCase();
   if (isHeadersProtocol(headers)) {
     // to deal with the case where the header looks like Stainless-Event-Id
@@ -1142,7 +1173,7 @@ export const getRequiredHeader = (headers: HeadersLike, header: string): string 
     }
   }
 
-  throw new Error(`Could not find ${header} header`);
+  return undefined;
 };
 
 /**
@@ -1158,7 +1189,7 @@ export const toBase64 = (str: string | null | undefined): string => {
     return btoa(str);
   }
 
-  throw new MeorphisTest40Error('Cannot generate b64 string; Expected `Buffer` or `btoa` to be defined');
+  throw new MeorphisTest4Error('Cannot generate b64 string; Expected `Buffer` or `btoa` to be defined');
 };
 
 export function isObj(obj: unknown): obj is Record<string, unknown> {

@@ -1,20 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest40 from 'meorphis-test-40';
+import MeorphisTest4 from 'meorphis-test-5';
 import { Response } from 'node-fetch';
 
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource webhooks', () => {
-  // skipped: currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url
-  test.skip('create: only required params', async () => {
-    const responsePromise = meorphisTest40.webhooks.create({
-      event: { '.tag': 'group', event_group: 'all' },
-      url: 'https://www.example.com/webhook',
-    });
+describe('resource cards', () => {
+  test('create: only required params', async () => {
+    const responsePromise = client.cards.create({ type: 'VIRTUAL' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,16 +20,41 @@ describe('resource webhooks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url
-  test.skip('create: required and optional params', async () => {
-    const response = await meorphisTest40.webhooks.create({
-      event: { '.tag': 'group', event_group: 'all' },
-      url: 'https://www.example.com/webhook',
+  test('create: required and optional params', async () => {
+    const response = await client.cards.create({
+      type: 'VIRTUAL',
+      account_token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      card_program_token: '00000000-0000-0000-1000-000000000000',
+      carrier: { qr_code_url: 'qr_code_url' },
+      digital_card_art_token: '00000000-0000-0000-1000-000000000000',
+      exp_month: '06',
+      exp_year: '2027',
+      memo: 'New Card',
+      pin: 'pin',
+      product_id: '1',
+      shipping_address: {
+        address1: '5 Broad Street',
+        city: 'NEW YORK',
+        country: 'USA',
+        first_name: 'Michael',
+        last_name: 'Bluth',
+        postal_code: '10001-1809',
+        state: 'NY',
+        address2: 'Unit 25A',
+        email: 'johnny@appleseed.com',
+        line2_text: 'The Bluth Company',
+        phone_number: '+12124007676',
+      },
+      shipping_method: 'STANDARD',
+      spend_limit: 1000,
+      spend_limit_duration: 'ANNUALLY',
+      state: 'OPEN',
+      'Idempotency-Key': 'Idempotency-Key',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = meorphisTest40.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g');
+    const responsePromise = client.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -46,12 +67,12 @@ describe('resource webhooks', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      meorphisTest40.webhooks.retrieve('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(MeorphisTest40.NotFoundError);
+      client.cards.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(MeorphisTest4.NotFoundError);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = meorphisTest40.webhooks.list({ 'X-Publishable-Key': 'string' });
+  test('update', async () => {
+    const responsePromise = client.cards.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -61,12 +82,8 @@ describe('resource webhooks', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await meorphisTest40.webhooks.list({ 'X-Publishable-Key': 'string' });
-  });
-
-  test('delete', async () => {
-    const responsePromise = meorphisTest40.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g');
+  test('provision', async () => {
+    const responsePromise = client.cards.provision('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,12 +91,5 @@ describe('resource webhooks', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      meorphisTest40.webhooks.delete('wh_za7VbYcSQU2zRgGQXQAm-g', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(MeorphisTest40.NotFoundError);
   });
 });
