@@ -1,17 +1,17 @@
-# Meorphis Test 40 Node API Library
+# Meorphis Test 4 Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/meorphis-test-40.svg)](https://npmjs.org/package/meorphis-test-40) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/meorphis-test-40)
+[![NPM version](https://img.shields.io/npm/v/meorphis-test-5.svg)](https://npmjs.org/package/meorphis-test-5) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/meorphis-test-5)
 
-This library provides convenient access to the Meorphis Test 40 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Meorphis Test 4 REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on help.bolt.com](https://help.bolt.com/api-bolt/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.meorphis-test-4.com](https://docs.meorphis-test-4.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Installation
 
 ```sh
-npm install meorphis-test-40
+npm install meorphis-test-5
 ```
 
 ## Usage
@@ -20,19 +20,17 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import MeorphisTest40 from 'meorphis-test-40';
+import MeorphisTest4 from 'meorphis-test-5';
 
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
+  apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
   environment: 'environment_1', // defaults to 'production'
-  apiKey: 'My API Key',
 });
 
 async function main() {
-  const accountAccountGetResponse = await meorphisTest40.accounts.accountGet({
-    'X-Publishable-Key': 'string',
-  });
+  const status = await client.status.retrieve();
 
-  console.log(accountAccountGetResponse.addresses);
+  console.log(status.message);
 }
 
 main();
@@ -44,17 +42,15 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import MeorphisTest40 from 'meorphis-test-40';
+import MeorphisTest4 from 'meorphis-test-5';
 
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
+  apiKey: process.env['MEORPHIS_TEST_4_API_KEY'], // This is the default and can be omitted
   environment: 'environment_1', // defaults to 'production'
-  apiKey: 'My API Key',
 });
 
 async function main() {
-  const params: MeorphisTest40.AccountAccountGetParams = { 'X-Publishable-Key': 'string' };
-  const accountAccountGetResponse: MeorphisTest40.AccountAccountGetResponse =
-    await meorphisTest40.accounts.accountGet(params);
+  const status: MeorphisTest4.StatusRetrieveResponse = await client.status.retrieve();
 }
 
 main();
@@ -71,17 +67,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const accountAccountGetResponse = await meorphisTest40.accounts
-    .accountGet({ 'X-Publishable-Key': 'string' })
-    .catch(async (err) => {
-      if (err instanceof MeorphisTest40.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const status = await client.status.retrieve().catch(async (err) => {
+    if (err instanceof MeorphisTest4.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -111,13 +105,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
   maxRetries: 0, // default is 2
-  apiKey: 'My API Key',
 });
 
 // Or, configure per-request:
-await meorphisTest40.accounts.accountGet({ 'X-Publishable-Key': 'string' }, {
+await client.status.retrieve({
   maxRetries: 5,
 });
 ```
@@ -129,13 +122,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
-  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await meorphisTest40.accounts.accountGet({ 'X-Publishable-Key': 'string' }, {
+await client.status.retrieve({
   timeout: 5 * 1000,
 });
 ```
@@ -154,17 +146,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const meorphisTest40 = new MeorphisTest40();
+const client = new MeorphisTest4();
 
-const response = await meorphisTest40.accounts.accountGet({ 'X-Publishable-Key': 'string' }).asResponse();
+const response = await client.status.retrieve().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: accountAccountGetResponse, response: raw } = await meorphisTest40.accounts
-  .accountGet({ 'X-Publishable-Key': 'string' })
-  .withResponse();
+const { data: status, response: raw } = await client.status.retrieve().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(accountAccountGetResponse.addresses);
+console.log(status.message);
 ```
 
 ### Making custom/undocumented requests
@@ -217,17 +207,17 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "MeorphisTest40"`:
+add the following import before your first import `from "MeorphisTest4"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'meorphis-test-40/shims/web';
-import MeorphisTest40 from 'meorphis-test-40';
+import 'meorphis-test-5/shims/web';
+import MeorphisTest4 from 'meorphis-test-5';
 ```
 
-To do the inverse, add `import "meorphis-test-40/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis/test-repo-1/tree/main/src/_shims#readme)).
+To do the inverse, add `import "meorphis-test-5/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/meorphis/test-repo-1/tree/v2/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -236,9 +226,9 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import MeorphisTest40 from 'meorphis-test-40';
+import MeorphisTest4 from 'meorphis-test-5';
 
-const client = new MeorphisTest40({
+const client = new MeorphisTest4({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -263,18 +253,14 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const meorphisTest40 = new MeorphisTest40({
+const client = new MeorphisTest4({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
-  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await meorphisTest40.accounts.accountGet(
-  { 'X-Publishable-Key': 'string' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.status.retrieve({
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning
@@ -295,8 +281,9 @@ TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
 
+- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import MeorphisTest40 from "npm:meorphis-test-40"`.
+- Deno v1.28.0 or higher.
 - Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.
@@ -306,3 +293,7 @@ The following runtimes are supported:
 Note that React Native is not supported at this time.
 
 If you are interested in other runtime environments, please open or upvote an issue on GitHub.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

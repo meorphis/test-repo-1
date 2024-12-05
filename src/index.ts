@@ -1,21 +1,30 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { type Agent } from './_shims/index';
 import * as Core from './core';
 import * as Errors from './error';
-import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
-import * as qs from 'qs';
 import * as API from './resources/index';
+import { Status, StatusRetrieveResponse } from './resources/status';
+import { AccountUpdateParams, Accountconfiguration, Accounts } from './resources/accounts/accounts';
+import {
+  Card,
+  CardCreateParams,
+  CardProvisionParams,
+  CardProvisionResponse,
+  CardUpdateParams,
+  Cards,
+  Financialtransaction,
+} from './resources/cards/cards';
 
 const environments = {
-  production: 'https://api.{username}.dev.bolt.me/v3',
-  environment_1: 'https://{environment}.bolt.com/v3',
+  production: 'https://api.acme.com/v1',
+  environment_1: 'https://sandbox.acme.com/v1',
 };
 type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
-   * Defaults to process.env['MEORPHIS_TEST_40_API_KEY'].
+   * Defaults to process.env['MEORPHIS_TEST_4_API_KEY'].
    */
   apiKey?: string | undefined;
 
@@ -23,15 +32,15 @@ export interface ClientOptions {
    * Specifies the environment to use for the API.
    *
    * Each environment maps to a different base URL:
-   * - `production` corresponds to `https://api.{username}.dev.bolt.me/v3`
-   * - `environment_1` corresponds to `https://{environment}.bolt.com/v3`
+   * - `production` corresponds to `https://api.acme.com/v1`
+   * - `environment_1` corresponds to `https://sandbox.acme.com/v1`
    */
   environment?: Environment;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['MEORPHIS_TEST_40_BASE_URL'].
+   * Defaults to process.env['MEORPHIS_TEST_4_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -85,18 +94,20 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Meorphis Test 40 API. */
-export class MeorphisTest40 extends Core.APIClient {
+/**
+ * API Client for interfacing with the Meorphis Test 4 API.
+ */
+export class MeorphisTest4 extends Core.APIClient {
   apiKey: string;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Meorphis Test 40 API.
+   * API Client for interfacing with the Meorphis Test 4 API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['MEORPHIS_TEST_40_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.apiKey=process.env['MEORPHIS_TEST_4_API_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['MEORPHIS_TEST_40_BASE_URL'] ?? https://api.{username}.dev.bolt.me/v3] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['MEORPHIS_TEST_4_BASE_URL'] ?? https://api.acme.com/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -105,13 +116,13 @@ export class MeorphisTest40 extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = Core.readEnv('MEORPHIS_TEST_40_BASE_URL'),
-    apiKey = Core.readEnv('MEORPHIS_TEST_40_API_KEY'),
+    baseURL = Core.readEnv('MEORPHIS_TEST_4_BASE_URL'),
+    apiKey = Core.readEnv('MEORPHIS_TEST_4_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.MeorphisTest40Error(
-        "The MEORPHIS_TEST_40_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest40 client with an apiKey option, like new MeorphisTest40({ apiKey: 'My API Key' }).",
+      throw new Errors.MeorphisTest4Error(
+        "The MEORPHIS_TEST_4_API_KEY environment variable is missing or empty; either provide it, or instantiate the MeorphisTest4 client with an apiKey option, like new MeorphisTest4({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -123,8 +134,8 @@ export class MeorphisTest40 extends Core.APIClient {
     };
 
     if (baseURL && opts.environment) {
-      throw new Errors.MeorphisTest40Error(
-        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_40_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      throw new Errors.MeorphisTest4Error(
+        'Ambiguous URL; The `baseURL` option (or MEORPHIS_TEST_4_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
       );
     }
 
@@ -135,17 +146,15 @@ export class MeorphisTest40 extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
+
     this._options = options;
 
     this.apiKey = apiKey;
   }
 
   accounts: API.Accounts = new API.Accounts(this);
-  payments: API.Payments = new API.Payments(this);
-  guests: API.Guests = new API.Guests(this);
-  merchants: API.Merchants = new API.Merchants(this);
-  webhooks: API.Webhooks = new API.Webhooks(this);
-  testings: API.Testings = new API.Testings(this);
+  cards: API.Cards = new API.Cards(this);
+  status: API.Status = new API.Status(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -158,13 +167,14 @@ export class MeorphisTest40 extends Core.APIClient {
     };
   }
 
-  protected override stringifyQuery(query: Record<string, unknown>): string {
-    return qs.stringify(query, { arrayFormat: 'comma' });
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    return { Authorization: this.apiKey };
   }
 
-  static MeorphisTest40 = this;
+  static MeorphisTest4 = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static MeorphisTest40Error = Errors.MeorphisTest40Error;
+  static MeorphisTest4Error = Errors.MeorphisTest4Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -182,8 +192,34 @@ export class MeorphisTest40 extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
-  MeorphisTest40Error,
+MeorphisTest4.Accounts = Accounts;
+MeorphisTest4.Cards = Cards;
+MeorphisTest4.Status = Status;
+export declare namespace MeorphisTest4 {
+  export type RequestOptions = Core.RequestOptions;
+
+  export {
+    Accounts as Accounts,
+    type Accountconfiguration as Accountconfiguration,
+    type AccountUpdateParams as AccountUpdateParams,
+  };
+
+  export {
+    Cards as Cards,
+    type Card as Card,
+    type Financialtransaction as Financialtransaction,
+    type CardProvisionResponse as CardProvisionResponse,
+    type CardCreateParams as CardCreateParams,
+    type CardUpdateParams as CardUpdateParams,
+    type CardProvisionParams as CardProvisionParams,
+  };
+
+  export { Status as Status, type StatusRetrieveResponse as StatusRetrieveResponse };
+}
+
+export { toFile, fileFromPath } from './uploads';
+export {
+  MeorphisTest4Error,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -196,34 +232,6 @@ export const {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} = Errors;
+} from './error';
 
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
-export namespace MeorphisTest40 {
-  export import RequestOptions = Core.RequestOptions;
-
-  export import Accounts = API.Accounts;
-  export import AccountAccountGetResponse = API.AccountAccountGetResponse;
-  export import AccountAccountGetParams = API.AccountAccountGetParams;
-
-  export import Payments = API.Payments;
-  export import PaymentCreateResponse = API.PaymentCreateResponse;
-  export import PaymentCreateParams = API.PaymentCreateParams;
-
-  export import Guests = API.Guests;
-
-  export import Merchants = API.Merchants;
-
-  export import Webhooks = API.Webhooks;
-  export import WebhookCreateResponse = API.WebhookCreateResponse;
-  export import WebhookRetrieveResponse = API.WebhookRetrieveResponse;
-  export import WebhookListResponse = API.WebhookListResponse;
-  export import WebhookCreateParams = API.WebhookCreateParams;
-  export import WebhookListParams = API.WebhookListParams;
-
-  export import Testings = API.Testings;
-}
-
-export default MeorphisTest40;
+export default MeorphisTest4;

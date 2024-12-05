@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import MeorphisTest40 from 'meorphis-test-40';
-import { APIUserAbortError } from 'meorphis-test-40';
-import { Headers } from 'meorphis-test-40/core';
+import MeorphisTest4 from 'meorphis-test-5';
+import { APIUserAbortError } from 'meorphis-test-5';
+import { Headers } from 'meorphis-test-5/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
@@ -20,7 +20,7 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new MeorphisTest40({
+    const client = new MeorphisTest4({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
       apiKey: 'My API Key',
@@ -52,7 +52,7 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new MeorphisTest40({
+      const client = new MeorphisTest4({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
         apiKey: 'My API Key',
@@ -61,7 +61,7 @@ describe('instantiate client', () => {
     });
 
     test('multiple default query params', () => {
-      const client = new MeorphisTest40({
+      const client = new MeorphisTest4({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
         apiKey: 'My API Key',
@@ -70,7 +70,7 @@ describe('instantiate client', () => {
     });
 
     test('overriding with `undefined`', () => {
-      const client = new MeorphisTest40({
+      const client = new MeorphisTest4({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
         apiKey: 'My API Key',
@@ -80,7 +80,7 @@ describe('instantiate client', () => {
   });
 
   test('custom fetch', async () => {
-    const client = new MeorphisTest40({
+    const client = new MeorphisTest4({
       baseURL: 'http://localhost:5000/',
       apiKey: 'My API Key',
       fetch: (url) => {
@@ -97,7 +97,7 @@ describe('instantiate client', () => {
   });
 
   test('custom signal', async () => {
-    const client = new MeorphisTest40({
+    const client = new MeorphisTest4({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       apiKey: 'My API Key',
       fetch: (...args) => {
@@ -124,7 +124,7 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new MeorphisTest40({
+      const client = new MeorphisTest4({
         baseURL: 'http://localhost:5000/custom/path/',
         apiKey: 'My API Key',
       });
@@ -132,7 +132,7 @@ describe('instantiate client', () => {
     });
 
     test('no trailing slash', () => {
-      const client = new MeorphisTest40({
+      const client = new MeorphisTest4({
         baseURL: 'http://localhost:5000/custom/path',
         apiKey: 'My API Key',
       });
@@ -140,72 +140,72 @@ describe('instantiate client', () => {
     });
 
     afterEach(() => {
-      process.env['MEORPHIS_TEST_40_BASE_URL'] = undefined;
+      process.env['MEORPHIS_TEST_4_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new MeorphisTest40({ baseURL: 'https://example.com', apiKey: 'My API Key' });
+      const client = new MeorphisTest4({ baseURL: 'https://example.com', apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['MEORPHIS_TEST_40_BASE_URL'] = 'https://example.com/from_env';
-      const client = new MeorphisTest40({ apiKey: 'My API Key' });
+      process.env['MEORPHIS_TEST_4_BASE_URL'] = 'https://example.com/from_env';
+      const client = new MeorphisTest4({ apiKey: 'My API Key' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['MEORPHIS_TEST_40_BASE_URL'] = ''; // empty
-      const client = new MeorphisTest40({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.{username}.dev.bolt.me/v3');
+      process.env['MEORPHIS_TEST_4_BASE_URL'] = ''; // empty
+      const client = new MeorphisTest4({ apiKey: 'My API Key' });
+      expect(client.baseURL).toEqual('https://api.acme.com/v1');
     });
 
     test('blank env variable', () => {
-      process.env['MEORPHIS_TEST_40_BASE_URL'] = '  '; // blank
-      const client = new MeorphisTest40({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.{username}.dev.bolt.me/v3');
+      process.env['MEORPHIS_TEST_4_BASE_URL'] = '  '; // blank
+      const client = new MeorphisTest4({ apiKey: 'My API Key' });
+      expect(client.baseURL).toEqual('https://api.acme.com/v1');
     });
 
     test('env variable with environment', () => {
-      process.env['MEORPHIS_TEST_40_BASE_URL'] = 'https://example.com/from_env';
+      process.env['MEORPHIS_TEST_4_BASE_URL'] = 'https://example.com/from_env';
 
       expect(
-        () => new MeorphisTest40({ apiKey: 'My API Key', environment: 'production' }),
+        () => new MeorphisTest4({ apiKey: 'My API Key', environment: 'production' }),
       ).toThrowErrorMatchingInlineSnapshot(
-        `"Ambiguous URL; The \`baseURL\` option (or MEORPHIS_TEST_40_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
+        `"Ambiguous URL; The \`baseURL\` option (or MEORPHIS_TEST_4_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
       );
 
-      const client = new MeorphisTest40({ apiKey: 'My API Key', baseURL: null, environment: 'production' });
-      expect(client.baseURL).toEqual('https://api.{username}.dev.bolt.me/v3');
+      const client = new MeorphisTest4({ apiKey: 'My API Key', baseURL: null, environment: 'production' });
+      expect(client.baseURL).toEqual('https://api.acme.com/v1');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new MeorphisTest40({ maxRetries: 4, apiKey: 'My API Key' });
+    const client = new MeorphisTest4({ maxRetries: 4, apiKey: 'My API Key' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new MeorphisTest40({ apiKey: 'My API Key' });
+    const client2 = new MeorphisTest4({ apiKey: 'My API Key' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['MEORPHIS_TEST_40_API_KEY'] = 'My API Key';
-    const client = new MeorphisTest40();
+    process.env['MEORPHIS_TEST_4_API_KEY'] = 'My API Key';
+    const client = new MeorphisTest4();
     expect(client.apiKey).toBe('My API Key');
   });
 
   test('with overriden environment variable arguments', () => {
     // set options via env var
-    process.env['MEORPHIS_TEST_40_API_KEY'] = 'another My API Key';
-    const client = new MeorphisTest40({ apiKey: 'My API Key' });
+    process.env['MEORPHIS_TEST_4_API_KEY'] = 'another My API Key';
+    const client = new MeorphisTest4({ apiKey: 'My API Key' });
     expect(client.apiKey).toBe('My API Key');
   });
 });
 
 describe('request building', () => {
-  const client = new MeorphisTest40({ apiKey: 'My API Key' });
+  const client = new MeorphisTest4({ apiKey: 'My API Key' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -247,7 +247,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new MeorphisTest40({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new MeorphisTest4({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -258,6 +258,122 @@ describe('retries', () => {
         .then((r) => r.text()),
     ).toEqual(JSON.stringify({ a: 1 }));
     expect(count).toEqual(3);
+  });
+
+  test('retry count header', async () => {
+    let count = 0;
+    let capturedRequest: RequestInit | undefined;
+    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+      count++;
+      if (count <= 2) {
+        return new Response(undefined, {
+          status: 429,
+          headers: {
+            'Retry-After': '0.1',
+          },
+        });
+      }
+      capturedRequest = init;
+      return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
+    };
+
+    const client = new MeorphisTest4({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+
+    expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
+
+    expect((capturedRequest!.headers as Headers)['x-stainless-retry-count']).toEqual('2');
+    expect(count).toEqual(3);
+  });
+
+  test('omit retry count header', async () => {
+    let count = 0;
+    let capturedRequest: RequestInit | undefined;
+    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+      count++;
+      if (count <= 2) {
+        return new Response(undefined, {
+          status: 429,
+          headers: {
+            'Retry-After': '0.1',
+          },
+        });
+      }
+      capturedRequest = init;
+      return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
+    };
+    const client = new MeorphisTest4({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+
+    expect(
+      await client.request({
+        path: '/foo',
+        method: 'get',
+        headers: { 'X-Stainless-Retry-Count': null },
+      }),
+    ).toEqual({ a: 1 });
+
+    expect(capturedRequest!.headers as Headers).not.toHaveProperty('x-stainless-retry-count');
+  });
+
+  test('omit retry count header by default', async () => {
+    let count = 0;
+    let capturedRequest: RequestInit | undefined;
+    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+      count++;
+      if (count <= 2) {
+        return new Response(undefined, {
+          status: 429,
+          headers: {
+            'Retry-After': '0.1',
+          },
+        });
+      }
+      capturedRequest = init;
+      return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
+    };
+    const client = new MeorphisTest4({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+      defaultHeaders: { 'X-Stainless-Retry-Count': null },
+    });
+
+    expect(
+      await client.request({
+        path: '/foo',
+        method: 'get',
+      }),
+    ).toEqual({ a: 1 });
+
+    expect(capturedRequest!.headers as Headers).not.toHaveProperty('x-stainless-retry-count');
+  });
+
+  test('overwrite retry count header', async () => {
+    let count = 0;
+    let capturedRequest: RequestInit | undefined;
+    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+      count++;
+      if (count <= 2) {
+        return new Response(undefined, {
+          status: 429,
+          headers: {
+            'Retry-After': '0.1',
+          },
+        });
+      }
+      capturedRequest = init;
+      return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
+    };
+    const client = new MeorphisTest4({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+
+    expect(
+      await client.request({
+        path: '/foo',
+        method: 'get',
+        headers: { 'X-Stainless-Retry-Count': '42' },
+      }),
+    ).toEqual({ a: 1 });
+
+    expect((capturedRequest!.headers as Headers)['x-stainless-retry-count']).toBe('42');
   });
 
   test('retry on 429 with retry-after', async () => {
@@ -274,7 +390,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new MeorphisTest40({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new MeorphisTest4({ apiKey: 'My API Key', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -301,7 +417,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new MeorphisTest40({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new MeorphisTest4({ apiKey: 'My API Key', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
